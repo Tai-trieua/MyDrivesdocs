@@ -5,54 +5,150 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chính sách bảo mật - Sổ tay Biến tần (MyDrives)</title>
     <style>
-        body { font-family: Arial, sans-serif; line-height: 1.6; padding: 20px; max-width: 800px; margin: auto; }
-        h1, h2 { color: #333; }
-        .english-version { margin-top: 40px; padding-top: 20px; border-top: 1px solid #ccc; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            line-height: 1.6; 
+            padding: 20px; 
+            max-width: 800px; 
+            margin: auto; 
+            color: #333;
+        }
+        
+        /* Bộ nút chuyển đổi */
+        .lang-switch {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-bottom: 30px;
+            position: sticky;
+            top: 0;
+            background: white;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .btn-lang {
+            padding: 8px 16px;
+            border: 1px solid #007bff;
+            background: white;
+            color: #007bff;
+            cursor: pointer;
+            border-radius: 20px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-lang.active {
+            background: #007bff;
+            color: white;
+        }
+
+        .btn-lang:hover {
+            background: #e7f3ff;
+        }
+
+        .btn-lang.active:hover {
+            background: #0056b3;
+        }
+
+        h1, h2 { color: #222; }
+        
+        /* Ẩn nội dung mặc định */
+        .lang-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        /* Hiển thị nội dung khi có class active */
+        .lang-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        ul { padding-left: 20px; }
+        li { margin-bottom: 8px; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
 
-    <h1>Chính sách bảo mật (Privacy Policy)</h1>
-    <p><em>Cập nhật lần cuối: 17/04/2026</em></p>
+    <!-- Thanh điều hướng ngôn ngữ -->
+    <div class="lang-switch">
+        <button class="btn-lang active" onclick="setLanguage('vi')" id="btn-vi">Tiếng Việt</button>
+        <button class="btn-lang" onclick="setLanguage('en')" id="btn-en">English</button>
+    </div>
 
-    <p>Ứng dụng <strong>Sổ tay Biến tần (MyDrives)</strong> cam kết bảo vệ quyền riêng tư của người dùng trên cả hai nền tảng Android và iOS. Chính sách này mô tả cách chúng tôi xử lý thông tin của bạn.</p>
+    <!-- Nội dung Tiếng Việt -->
+    <div id="content-vi" class="lang-content active">
+        <h1>Chính sách bảo mật</h1>
+        <p><em>Cập nhật lần cuối: 17/04/2026</em></p>
 
-    <h2>1. Thu thập dữ liệu (Data Collection)</h2>
-    <p>Ứng dụng hoạt động chủ yếu ngoại tuyến (offline) và <strong>hoàn toàn không thu thập, lưu trữ hay chia sẻ</strong> bất kỳ thông tin cá nhân định danh nào của người dùng. Chúng tôi không sử dụng các công cụ theo dõi (trackers) hay dịch vụ phân tích dữ liệu bên thứ ba thu thập dữ liệu cá nhân.</p>
-    <p>Mọi giao dịch thanh toán nâng cấp ứng dụng (Premium) đều được xử lý trực tiếp và bảo mật thông qua hệ thống Apple In-App Purchase và Google Play Billing. Chúng tôi không có quyền truy cập và không lưu trữ thông tin thẻ tín dụng hay thông tin tài khoản ngân hàng của bạn.</p>
+        <p>Ứng dụng <strong>Sổ tay Biến tần (MyDrives)</strong> cam kết bảo vệ quyền riêng tư của người dùng trên cả hai nền tảng Android và iOS. Chính sách này mô tả cách chúng tôi xử lý thông tin của bạn.</p>
 
-    <h2>2. Quyền truy cập (Permissions)</h2>
-    <ul>
-        <li><strong>Quyền Internet:</strong> Chỉ được sử dụng khi người dùng có nhu cầu tải các tài liệu PDF (Manual) từ máy chủ hoặc kiểm tra cập nhật ứng dụng.</li>
-        <li><strong>Quyền Bộ nhớ:</strong> Được sử dụng để lưu trữ cục bộ các tài liệu PDF đã tải về, giúp người dùng có thể tra cứu offline trong các lần sử dụng tiếp theo.</li>
-    </ul>
+        <h2>1. Thu thập dữ liệu</h2>
+        <p>Ứng dụng hoạt động chủ yếu ngoại tuyến (offline) và <strong>hoàn toàn không thu thập, lưu trữ hay chia sẻ</strong> bất kỳ thông tin cá nhân định danh nào của người dùng. Chúng tôi không sử dụng các công cụ theo dõi (trackers) hay dịch vụ phân tích dữ liệu bên thứ ba thu thập dữ liệu cá nhân.</p>
+        <p>Mọi giao dịch thanh toán nâng cấp ứng dụng (Premium) đều được xử lý trực tiếp và bảo mật thông qua hệ thống Apple In-App Purchase và Google Play Billing. Chúng tôi không có quyền truy cập và không lưu trữ thông tin thẻ tín dụng hay thông tin tài khoản ngân hàng của bạn.</p>
 
-    <h2>3. Thông tin liên hệ (Contact Us)</h2>
-    <p>Nếu bạn có bất kỳ câu hỏi nào về Chính sách bảo mật này, vui lòng liên hệ trực tiếp:</p>
-    <ul>
-        <li><strong>Chủ sở hữu / Developer:</strong> Triệu A Tài</li>
-        <li><strong>Email:</strong> trieuatai11d2clc@gmail.com</li>
-        <li><strong>GitHub:</strong> <a href="https://github.com/Tai-trieua">Tai-trieua</a></li>
-    </ul>
+        <h2>2. Quyền truy cập</h2>
+        <ul>
+            <li><strong>Quyền Internet:</strong> Chỉ được sử dụng khi người dùng có nhu cầu tải các tài liệu PDF (Manual) từ máy chủ hoặc kiểm tra cập nhật ứng dụng.</li>
+            <li><strong>Quyền Bộ nhớ:</strong> Được sử dụng để lưu trữ cục bộ các tài liệu PDF đã tải về, giúp người dùng có thể tra cứu offline trong các lần sử dụng tiếp theo.</li>
+        </ul>
 
-    <div class="english-version">
-        <h1>Privacy Policy (English)</h1>
-        <p>The <strong>MyDrives (Sổ tay Biến tần)</strong> app is committed to protecting your privacy. This policy explains our data practices.</p>
+        <h2>3. Thông tin liên hệ</h2>
+        <p>Nếu bạn có bất kỳ câu hỏi nào về Chính sách bảo mật này, vui lòng liên hệ trực tiếp:</p>
+        <ul>
+            <li><strong>Chủ sở hữu / Developer:</strong> Triệu A Tài</li>
+            <li><strong>Email:</strong> trieuatai11d2clc@gmail.com</li>
+            <li><strong>GitHub:</strong> <a href="https://github.com/Tai-trieua" target="_blank">Tai-trieua</a></li>
+        </ul>
+    </div>
+
+    <!-- Nội dung Tiếng Anh -->
+    <div id="content-en" class="lang-content">
+        <h1>Privacy Policy</h1>
+        <p><em>Last updated: April 17, 2026</em></p>
+
+        <p>The <strong>MyDrives (Sổ tay Biến tần)</strong> app is committed to protecting your privacy on both Android and iOS platforms. This policy explains our data practices.</p>
 
         <h2>1. No Data Collection</h2>
         <p>Our application operates primarily offline and <strong>does not collect, store, or share</strong> any personal identifying information (PII). We do not use third-party analytics or tracking tools that harvest personal data.</p>
-        <p>All in-app purchases are securely processed by Apple App Store and Google Play Store. We do not have access to, nor do we store, your credit card or financial information.</p>
+        <p>All in-app purchases (Premium) are securely processed by Apple App Store and Google Play Store. We do not have access to, nor do we store, your credit card or financial information.</p>
 
         <h2>2. App Permissions</h2>
-        <p>The app only requests Internet access to fetch PDF manuals upon user request, and local Storage permissions to save those documents for future offline viewing.</p>
+        <ul>
+            <li><strong>Internet Access:</strong> Used only to fetch PDF manuals upon user request or check for app updates.</li>
+            <li><strong>Storage:</strong> Used to save downloaded PDF documents locally for offline viewing.</li>
+        </ul>
 
         <h2>3. Contact Information</h2>
         <p>If you have any questions, please contact the developer:</p>
         <ul>
             <li><strong>Developer:</strong> Triệu A Tài</li>
             <li><strong>Email:</strong> trieuatai11d2clc@gmail.com</li>
+            <li><strong>GitHub:</strong> <a href="https://github.com/Tai-trieua" target="_blank">Tai-trieua</a></li>
         </ul>
     </div>
+
+    <script>
+        function setLanguage(lang) {
+            // Cập nhật class active cho nội dung
+            document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
+            document.getElementById('content-' + lang).classList.add('active');
+
+            // Cập nhật class active cho nút bấm
+            document.querySelectorAll('.btn-lang').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + lang).classList.add('active');
+            
+            // Cuộn lên đầu trang khi chuyển ngôn ngữ
+            window.scrollTo(0, 0);
+        }
+    </script>
 
 </body>
 </html>
