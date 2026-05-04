@@ -20,10 +20,48 @@
             padding: 0; 
             background-color: var(--bg-color); 
         }
+
+        /* --- CSS cho Chuyển đổi ngôn ngữ --- */
+        .lang-switch {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: -25px 0 20px 0; /* Đẩy lên trên card đầu tiên */
+            position: relative;
+            z-index: 10;
+        }
+        .btn-lang {
+            padding: 10px 25px;
+            border: none;
+            background: white;
+            color: var(--primary-color);
+            cursor: pointer;
+            border-radius: 30px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: 0.3s;
+        }
+        .btn-lang.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        .lang-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        .lang-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* ---------------------------------- */
+
         .header-banner {
             background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
             color: white;
-            padding: 60px 20px;
+            padding: 60px 20px 80px 20px; /* Tăng padding bottom để làm nền cho nút */
             text-align: center;
             border-bottom-left-radius: 50% 20px;
             border-bottom-right-radius: 50% 20px;
@@ -31,7 +69,7 @@
         .header-banner h1 { margin: 0; font-size: 2.5rem; letter-spacing: 1px; }
         .header-banner p { opacity: 0.9; font-size: 1.1rem; margin-top: 10px; }
         
-        .container { padding: 40px 20px; }
+        .container { padding: 20px; }
         .card { 
             background: white; 
             padding: 30px; 
@@ -94,58 +132,139 @@
 <body>
 
     <header class="header-banner">
-        <h1>Sổ tay Biến tần (MyDrives)</h1>
-        <p>Giải pháp kỹ thuật số cho kỹ sư tự động hóa hiện đại</p>
+        <h1 id="main-title">Sổ tay Biến tần (MyDrives)</h1>
+        <p id="sub-title">Giải pháp kỹ thuật số cho kỹ sư tự động hóa hiện đại</p>
     </header>
 
     <div class="container">
-        <section class="card">
-            <h2>Sứ mệnh của chúng tôi</h2>
-            <p><strong>MyDrives</strong> được xây dựng nhằm cung cấp giải pháp tra cứu mã lỗi và sơ đồ kỹ thuật nhanh chóng cho cộng đồng kỹ thuật. Chúng tôi tập trung vào việc tối ưu hóa quy trình bảo trì, giúp kỹ sư dễ dàng truy cập thông tin chính xác ngay tại hiện trường mà không cần phụ thuộc vào tài liệu giấy hay kết nối mạng phức tạp.</p>
-            
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <span class="stat-number">34+</span>
-                    <span class="stat-label">Hãng Biến tần hỗ trợ</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">200+</span>
-                    <span class="stat-label">Model thiết bị tích hợp</span>
-                </div>
-                <div class="stat-item">
-                    <span class="stat-number">100%</span>
-                    <span class="stat-label">Hoạt động Ngoại tuyến</span>
-                </div>
-            </div>
-        </section>
+        <!-- Nút chuyển ngôn ngữ -->
+        <div class="lang-switch">
+            <button class="btn-lang active" onclick="setLanguage('vi')" id="btn-vi">Tiếng Việt</button>
+            <button class="btn-lang" onclick="setLanguage('en')" id="btn-en">English</button>
+        </div>
 
-        <section class="card">
-            <h2>Tính năng ưu việt</h2>
-            <ul class="feature-list">
-                <li><strong>Dữ liệu chuẩn xác:</strong> Tổng hợp đầy đủ từ 34 hãng lớn như Siemens, Yaskawa, Mitsubishi, ABB, Delta, INVT... và hàng trăm model khác.</li>
-                <li><strong>Tra cứu thần tốc:</strong> Giao diện tối giản giúp tìm mã lỗi và hướng dẫn khắc phục chỉ với vài thao tác chạm.</li>
-                <li><strong>Sơ đồ chân tín hiệu:</strong> Cung cấp chi tiết sơ đồ đấu nối và chức năng chân I/O, giúp rút ngắn thời gian lắp đặt.</li>
-                <li><strong>Thư viện Manual:</strong> Hỗ trợ xem trực tuyến tài liệu hướng dẫn sử dụng nguyên bản từ nhà sản xuất.</li>
-            </ul>
-        </section>
-
-        <section class="card">
-            <h2>Về Nhà Phát Triển</h2>
-            <div class="dev-profile">
-                <div class="dev-info">
-                    <p class="dev-name">Triệu A Tài (Thomas)</p>
-                    <span class="dev-title">Kỹ sư Điện - Tự động hóa.</span>
-                    <p>Với kinh nghiệm thực tế trong lĩnh vực điều khiển và truyền động điện, tôi thấu hiểu những khó khăn của kỹ sư khi phải xử lý sự cố tại nhà máy mà thiếu tài liệu hỗ trợ.</p>
-                    <p>Ứng dụng này là dự án cá nhân được đầu tư kỹ lưỡng về mặt dữ liệu và trải nghiệm người dùng, với mong muốn mang lại một công cụ thực sự hữu ích, đáng tin cậy cho những người làm kỹ thuật tại Việt Nam.</p>
-                    <a href="https://tai-trieua.github.io/" class="btn-contact">Xem Portfolio của tôi</a>
+        <!-- NỘI DUNG TIẾNG VIỆT -->
+        <div id="content-vi" class="lang-content active">
+            <section class="card">
+                <h2>Sứ mệnh của chúng tôi</h2>
+                <p><strong>MyDrives</strong> được xây dựng nhằm cung cấp giải pháp tra cứu mã lỗi và sơ đồ kỹ thuật nhanh chóng cho cộng đồng kỹ thuật. Chúng tôi tập trung vào việc tối ưu hóa quy trình bảo trì, giúp kỹ sư dễ dàng truy cập thông tin chính xác ngay tại hiện trường mà không cần phụ thuộc vào tài liệu giấy hay kết nối mạng phức tạp.</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number">34+</span>
+                        <span class="stat-label">Hãng Biến tần hỗ trợ</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">200+</span>
+                        <span class="stat-label">Model thiết bị tích hợp</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Hoạt động Ngoại tuyến</span>
+                    </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <section class="card">
+                <h2>Tính năng ưu việt</h2>
+                <ul class="feature-list">
+                    <li><strong>Dữ liệu chuẩn xác:</strong> Tổng hợp đầy đủ từ 34 hãng lớn như Siemens, Yaskawa, Mitsubishi, ABB, Delta, INVT... và hàng trăm model khác.</li>
+                    <li><strong>Tra cứu thần tốc:</strong> Giao diện tối giản giúp tìm mã lỗi và hướng dẫn khắc phục chỉ với vài thao tác chạm.</li>
+                    <li><strong>Sơ đồ chân tín hiệu:</strong> Cung cấp chi tiết sơ đồ đấu nối và chức năng chân I/O, giúp rút ngắn thời gian lắp đặt.</li>
+                    <li><strong>Thư viện Manual:</strong> Hỗ trợ xem trực tuyến tài liệu hướng dẫn sử dụng nguyên bản từ nhà sản xuất.</li>
+                </ul>
+            </section>
+
+            <section class="card">
+                <h2>Về Nhà Phát Triển</h2>
+                <div class="dev-profile">
+                    <div class="dev-info">
+                        <p class="dev-name">Triệu A Tài (Thomas)</p>
+                        <span class="dev-title">Kỹ sư Điện - Tự động hóa.</span>
+                        <p>Với kinh nghiệm thực tế trong lĩnh vực điều khiển và truyền động điện, tôi thấu hiểu những khó khăn của kỹ sư khi phải xử lý sự cố tại nhà máy mà thiếu tài liệu hỗ trợ.</p>
+                        <p>Ứng dụng này là dự án cá nhân được đầu tư kỹ lưỡng về mặt dữ liệu và trải nghiệm người dùng, với mong muốn mang lại một công cụ thực sự hữu ích, đáng tin cậy cho những người làm kỹ thuật tại Việt Nam.</p>
+                        <a href="https://tai-trieua.github.io/" target="_blank" class="btn-contact">Xem Portfolio của tôi</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- NỘI DUNG TIẾNG ANH -->
+        <div id="content-en" class="lang-content">
+            <section class="card">
+                <h2>Our Mission</h2>
+                <p><strong>MyDrives</strong> was built to provide a fast error code and technical diagram lookup solution for the technical community. We focus on optimizing maintenance processes, helping engineers easily access accurate information right on-site without relying on paper documents or complex network connections.</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number">34+</span>
+                        <span class="stat-label">Supported Brands</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">200+</span>
+                        <span class="stat-label">Integrated Models</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">100%</span>
+                        <span class="stat-label">Offline Operation</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>Key Features</h2>
+                <ul class="feature-list">
+                    <li><strong>Accurate Data:</strong> Comprehensive collection from 34 major brands (Siemens, Yaskawa, Mitsubishi, ABB, Delta, INVT...) and hundreds of models.</li>
+                    <li><strong>High-speed Lookup:</strong> Minimalist interface helps find error codes and troubleshooting guides with just a few taps.</li>
+                    <li><strong>Signal Pinouts:</strong> Provides detailed wiring diagrams and I/O pin functions to shorten installation time.</li>
+                    <li><strong>Manual Library:</strong> Supports online viewing of original manufacturer user manuals.</li>
+                </ul>
+            </section>
+
+            <section class="card">
+                <h2>About the Developer</h2>
+                <div class="dev-profile">
+                    <div class="dev-info">
+                        <p class="dev-name">Triệu A Tài (Thomas)</p>
+                        <span class="dev-title">Electrical & Automation Engineer.</span>
+                        <p>With practical experience in electrical control and drives, I understand the difficulties engineers face when troubleshooting at factories without supporting documentation.</p>
+                        <p>This app is a personal project carefully invested in data and user experience, aiming to provide a truly useful and reliable tool for technical professionals.</p>
+                        <a href="https://tai-trieua.github.io/" target="_blank" class="btn-contact">View my Portfolio</a>
+                    </div>
+                </div>
+            </section>
+        </div>
     </div>
 
     <footer style="text-align: center; padding-bottom: 40px; color: #888; font-size: 0.8rem;">
-        <p>&copy; 2026 MyDrives Project. Phát triển bởi Triệu A Tài.</p>
+        <p id="footer-text">&copy; 2026 MyDrives Project. Developed by Triệu A Tài.</p>
     </footer>
+
+    <script>
+        function setLanguage(lang) {
+            // Cập nhật class active cho nội dung
+            document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
+            document.getElementById('content-' + lang).classList.add('active');
+
+            // Cập nhật class active cho nút bấm
+            document.querySelectorAll('.btn-lang').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + lang).classList.add('active');
+
+            // Cập nhật tiêu đề trên Banner (vì nó nằm ngoài lang-content)
+            const title = document.getElementById('main-title');
+            const subTitle = document.getElementById('sub-title');
+            
+            if(lang === 'en') {
+                title.innerText = "Inverter Handbook (MyDrives)";
+                subTitle.innerText = "Digital solutions for modern automation engineers";
+            } else {
+                title.innerText = "Sổ tay Biến tần (MyDrives)";
+                subTitle.innerText = "Giải pháp kỹ thuật số cho kỹ sư tự động hóa hiện đại";
+            }
+            
+            window.scrollTo(0, 0);
+        }
+    </script>
 
 </body>
 </html>
